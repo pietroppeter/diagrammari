@@ -62,6 +62,12 @@ working rules that are easy to miss.
 - Living documents (the explainer, the specs page) are kept up to date. A devlog post
   (`docs/devlog/<slug>.nim`, first line `## devlog: dd Mon yyyy | title | lede`) is dated and not
   updated afterwards; the devlog index finds it, and it gets a line in the README.
+- The Diagrams series (`docs/series/`) is a collection of its own: each part keeps the style of
+  its figure (CSS in `docs/series/assets/`, fonts inlined from `assets/fonts/`), and a bar from
+  `docs/series/serie.nim` links the parts and their index, the devlog post `diagrams_series.nim`.
+  Parts 1-3 are hand-made HTML kept as they were made (committed, with their vendored Pele and
+  D3); their nimib versions (`nimib.html`) reuse that prose and rebuild tables and diagrams from
+  data. Parts 4-5 are notebooks and are still being written, so the index changes with them.
 - A link can show part of the specs page: `specs/?spec=<names>` or `specs/?change=<names>`
   (comma-separated, `name*` for a prefix, `all`, or the same after `#`).
 - Facts in the explainer's history come with a link to their source; check them before adding.

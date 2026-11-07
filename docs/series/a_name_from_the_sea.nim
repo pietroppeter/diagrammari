@@ -173,16 +173,25 @@ nbDiagram voyage, caption = "Five names, left to right. Pele drew it; the colour
 nbRawHtml: side(jelly(), "") & """<h3>What the nimib versions gave</h3>"""
 
 nbText: """
-Pietro asked to see parts 1 to 3 remade as nimib notebooks, "and see what it gives". Part 1 is
-done ([nimib version](../diagram-history/nimib.html)); parts 2 and 3 are coming. A first reading:
+Pietro asked to see parts 1 to 3 remade as nimib notebooks, "and see what it gives". All three
+are done: [part 1](../diagram-history/nimib.html), [part 2](../everyday-diagrams/nimib.html),
+[part 3](../personal-diagrams/nimib.html). A first reading:
 
-- **The data became data.** In the hand-made page the timeline was forty-two list items and a
+- **The data became data.** In the hand-made part 1 the timeline was forty-two list items and a
   rug plot drawn by JavaScript. In the notebook it is one Nim `seq`, and the rug plot, the four
-  era tables and the count of events are computed from it. Adding an event is one line.
+  era tables and the count of events are computed from it. Adding an event is one line. In part
+  2, the Isotype chart of who decides what is six rows of booleans, and the count is a column.
+- **Diagrams moved to build time.** Part 2's Mermaid example is drawn by mari when the page is
+  built and reaches the reader as SVG. Part 3's proof of concept stays in the browser, because it
+  is interactive; its notebook adds the same diagram drawn at build time, the sheet the layer
+  sits on.
 - **Tables fit the margin notes less well.** Tufte's sidenotes became a *read more* column. It is
   easier to scan, and less like a book.
-- **The style survives.** The page keeps its own CSS; nimib only adds the series bar on top and,
-  at the bottom, the source of the page.
+- **Two ways to keep the words.** Part 1's notebook has its own text. Parts 2 and 3 cut their
+  prose out of the hand-made pages when they are built, so the words live in one place and the
+  notebook only replaces what is better as data.
+- **The style survives.** Each page keeps its own CSS; nimib adds the series bar on top and, at
+  the bottom, the source of the page.
 """
 
 nbRawHtml: side(shell(), "") & """<h2><span class="n">4</span>What comes next</h2>"""

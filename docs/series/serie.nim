@@ -85,3 +85,17 @@ proc useSerie*(nb: var Nb, part, title, description, css: string, fonts = "", or
   nb.backend.partials["nbText"] = serieText
   nb.backend.partials["left"] = emptyPartial
   nb.backend.partials["right"] = emptyPartial
+
+proc handmade*(slug: string): string =
+  ## The hand-made page of a part, so its nimib version can reuse the prose as it was written.
+  readFile(currentSourcePath().parentDir / slug / "index.html")
+
+func cut*(html, first, last: string): string =
+  ## The piece of `html` from `first` (included) up to `last` (excluded); `last = ""` goes to the
+  ## end. Fails loudly when a marker is missing, so a change to the hand-made page shows up.
+  let a = html.find(first)
+  doAssert a >= 0, "marker not found: " & first
+  if last.len == 0: return html[a .. ^1]
+  let b = html.find(last, a + first.len)
+  doAssert b >= 0, "marker not found: " & last
+  html[a ..< b]

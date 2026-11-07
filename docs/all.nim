@@ -3,5 +3,6 @@
 ## initialised, in import order.
 {.warning[UnusedImport]: off.}
 import index, explainer, specs
-import series/[diagram_history, a_name_from_the_sea, a_house_style]
+import series/[diagram_history, everyday_diagrams, personal_diagrams, a_name_from_the_sea,
+              a_house_style]
 import devlog/[day_one, diagrams_series, index as devlogIndex]
