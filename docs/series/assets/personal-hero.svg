@@ -1,0 +1,23 @@
+<svg viewBox="0 0 600 330" role="img" aria-label="Exploded drawing of three stacked sheets: the Mermaid source, the Pele drawing, and the personal layer">
+  <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#161616">
+    <g transform="translate(0 214)">
+      <path d="M40 40L250 0L470 40L260 80Z" fill="#fff" stroke="#161616" stroke-width="1.5"/>
+      <g stroke="#161616" stroke-width="1.2"><path d="M110 37L250 11"/><path d="M130 45L270 19"/><path d="M150 53L250 34"/><path d="M170 61L300 37"/></g>
+      <text x="480" y="44">1 · source</text><text x="480" y="60" fill="#6a675f">Mermaid text</text>
+    </g>
+    <g transform="translate(0 112)">
+      <path d="M40 40L250 0L470 40L260 80Z" fill="#fff" stroke="#161616" stroke-width="1.5"/>
+      <g fill="#f3f3f3" stroke="#161616" stroke-width="1.2"><path d="M130 38l30-6 26 5-30 6z"/><path d="M230 19l30-6 26 5-30 6z"/><path d="M300 45l30-6 26 5-30 6z"/></g>
+      <path d="M186 34L230 24M286 21L320 40" stroke="#161616" stroke-width="1.2" fill="none"/>
+      <text x="480" y="44">2 · drawing</text><text x="480" y="60" fill="#6a675f">Pele, standard</text>
+    </g>
+    <g transform="translate(0 10)">
+      <path d="M40 40L250 0L470 40L260 80Z" fill="#e3c48c" fill-opacity=".55" stroke="#161616" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <path d="M156 43l30-6 26 5-30 6z" fill="#d2361f" stroke="#161616" stroke-width="1.2"/>
+      <path d="M186 40C215 10 300 60 326 46" stroke="#d2361f" stroke-width="2" fill="none"/>
+      <circle cx="215" cy="20" r="4" fill="#fff" stroke="#d2361f" stroke-width="1.5"/>
+      <text x="480" y="44">3 · layer</text><text x="480" y="60" fill="#6a675f">JSON, yours</text>
+    </g>
+    <g stroke="#161616" stroke-width="1" stroke-dasharray="2 4"><path d="M40 50V152M470 50V152M40 152V254M470 152V254"/></g>
+  </g>
+</svg>

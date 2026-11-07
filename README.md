@@ -15,7 +15,8 @@ needs no JavaScript) or in the reader's browser. It fits in
 **Site:** [pietroppeter.github.io/diagrammari](https://pietroppeter.github.io/diagrammari/), with the
 [explainer](https://pietroppeter.github.io/diagrammari/explainer/) (Mermaid, Pele, and the art of
 diagrams from Priestley to Sugiyama), the [specs](https://pietroppeter.github.io/diagrammari/specs/)
-and the [devlog](https://pietroppeter.github.io/diagrammari/devlog/).
+the [devlog](https://pietroppeter.github.io/diagrammari/devlog/), and how it all began: the
+[Diagrams series](https://pietroppeter.github.io/diagrammari/devlog/diagrams-series/), in five parts.
 
 > **Status: a first version, a proof of concept.** The API will change.
 
@@ -61,6 +62,10 @@ Posts, dated and not updated afterwards:
 
 - [diagrammari in Python, Jupyter and marimo: the evidence](https://pietroppeter.github.io/diagrammari/devlog/python-jupyter-marimo/)
   (7 Nov 2026): the Python proof of concept as a case file, and one repo or two.
+- [Diagrams, a series in five parts](https://pietroppeter.github.io/diagrammari/devlog/diagrams-series/)
+  (7 Nov 2026): how diagrammari came about. The first post, and the index of a series on the
+  history of diagrams, everyday diagrams, making them yours, the name and the house style, each
+  part in the style of its own figure (`docs/series/`).
 - [Day one: from Mermaid to Pele to diagrammari](https://pietroppeter.github.io/diagrammari/devlog/day-one/)
   (7 Nov 2026): reading Pele, deciding to wrap it rather than rewrite it, and a first diagrammari.
 
