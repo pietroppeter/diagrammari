@@ -1,0 +1,58 @@
+/* Part 4, "A Name from the Sea": a whimsical seaside picture book. Cream paper, watercolour
+   blues, a coral red, crayon lines; rounded Zen Maru Gothic (maru, 丸, is "round") for the text and
+   Klee One, a pencil hand, for the headings. */
+:root{--paper:#fbf6ea;--ink:#28405a;--sea:#3b86c4;--sea2:#8fd0dc;--coral:#e0533d;--sun:#f4c15a;--leaf:#7aa95c;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font:17px/1.8 "Zen Maru Gothic",ui-rounded,"Hiragino Maru Gothic ProN",sans-serif;
+  background:var(--paper);
+  background-image:radial-gradient(60vw 40vw at 110% -5%,#f4c15a33,transparent 70%),
+    radial-gradient(70vw 50vw at -20% 105%,#8fd0dc55,transparent 70%);background-attachment:fixed}
+[hidden]{display:none!important}
+main{max-width:none;padding:0;margin:0}
+article{max-width:680px;margin:0 auto;padding:12px 22px 20px;position:relative}
+a{color:var(--sea);text-decoration-thickness:1.5px;text-underline-offset:3px}
+h1,h2,h3{font-family:"Klee One","Zen Maru Gothic",cursive;font-weight:600;line-height:1.25}
+h1{font-size:46px;margin:6px 0 4px;color:var(--ink)}
+h1 .dot{color:var(--coral)}
+.lede{font-size:20px;margin:0 0 18px;color:#3d5c78}
+h2{font-size:30px;margin:56px 0 10px;color:var(--sea);padding-bottom:10px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%23e0533d' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom/40px 10px repeat-x}
+h2 .n{color:var(--coral);margin-right:.25em}
+h3{font-size:22px;margin:30px 0 6px;color:var(--coral)}
+p{margin:0 0 14px}
+em,i{font-style:normal;background:linear-gradient(transparent 62%,#f4c15a66 62%)}
+strong{color:#1d3047}
+svg.doodle{display:block;width:100%;height:auto;overflow:visible}
+.hero{margin:6px -8px 0}
+figure{margin:0}
+figure.side{float:right;width:120px;margin:4px 0 8px 16px;text-align:center}
+figure.side figcaption{font:13px/1.35 "Klee One",cursive;color:#5a7690}
+@media (min-width:1080px){figure.side{width:170px;margin-right:-220px;margin-left:24px;clear:right}}
+.clear{clear:both}
+.bubbles{display:flex;flex-direction:column;gap:10px;margin:14px 0 20px}
+.bubble{max-width:86%;padding:10px 16px;border-radius:22px;background:#fff;border:2px solid var(--ink);
+  box-shadow:3px 4px 0 #8fd0dc88;font-size:16px;line-height:1.6;position:relative}
+.bubble b{display:block;font:600 14px/1.2 "Klee One",cursive;color:var(--coral);margin-bottom:2px}
+.bubble.p{align-self:flex-start;border-bottom-left-radius:6px;background:#fff9ec}
+.bubble.c{align-self:flex-end;border-bottom-right-radius:6px;background:#eef8fa}
+.bubble small{display:block;color:#6b8296;font-size:12.5px;margin-top:4px}
+.note{position:relative;background:#fffdf6;border:2px dashed #e0533d88;border-radius:14px;padding:14px 18px 10px;margin:18px 0;
+  transform:rotate(-.4deg)}
+.note::before{content:"";position:absolute;top:-10px;left:40%;width:70px;height:18px;background:#f4c15a99;transform:rotate(-3deg)}
+.note .who{font:600 15px "Klee One",cursive;color:var(--coral)}
+.note.todo{color:#6b8296}
+.ports{list-style:none;padding:0;margin:16px 0;counter-reset:port}
+.ports li{counter-increment:port;position:relative;padding:0 0 14px 44px;border-left:2px dotted var(--sea);margin-left:14px}
+.ports li::before{content:counter(port);position:absolute;left:-15px;top:0;width:28px;height:28px;border-radius:50%;
+  background:var(--coral);color:#fff;font:600 15px/28px "Klee One",cursive;text-align:center}
+.ports li:last-child{border-left-color:transparent}
+.ports b{font-family:"Klee One",cursive;font-size:19px}
+body pre{background:#eaf4f4;border:2px solid #8fd0dc;border-radius:12px;padding:10px 14px;overflow:auto}
+body pre > code{font:12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#1d3047;background:none}
+code{font:.86em ui-monospace,Menlo,Consolas,monospace;background:#eaf4f4;border-radius:4px;padding:0 .25em}
+.tabella{margin:14px 0 22px;overflow-x:auto}
+.ending{text-align:center;font:20px/1.6 "Klee One",cursive;color:var(--sea);margin:40px 0 0}
+@media (max-width:560px){body{font-size:16px}h1{font-size:36px}h2{font-size:26px}article{padding:10px 16px}
+  figure.side{width:92px;margin-left:10px}.bubble{max-width:94%}}
+h3 a{color:inherit;text-decoration-color:#e0533d66}
