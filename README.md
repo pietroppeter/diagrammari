@@ -59,6 +59,8 @@ Kept up to date as diagrammari changes:
 
 Posts, dated and not updated afterwards:
 
+- [diagrammari in Python, Jupyter and marimo: the evidence](https://pietroppeter.github.io/diagrammari/devlog/python-jupyter-marimo/)
+  (7 Nov 2026): the Python proof of concept as a case file, and one repo or two.
 - [Day one: from Mermaid to Pele to diagrammari](https://pietroppeter.github.io/diagrammari/devlog/day-one/)
   (7 Nov 2026): reading Pele, deciding to wrap it rather than rewrite it, and a first diagrammari.
 

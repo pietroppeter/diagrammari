@@ -3,4 +3,4 @@
 ## initialised, in import order.
 {.warning[UnusedImport]: off.}
 import index, explainer, specs
-import devlog/[day_one, index as devlogIndex]
+import devlog/[day_one, python_jupyter_marimo, index as devlogIndex]
