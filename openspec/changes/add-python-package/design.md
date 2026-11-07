@@ -76,7 +76,10 @@ state without a converter.
 
 ## Open Questions
 
-- Which org: `pietroppeter/diagrammari-py` or `nimib-land/`? It follows diagrammari.
+- Decided 7 Nov 2026: `pietroppeter/diagrammari-py` for now (Pietro creates it); it may move to
+  nimib-land with diagrammari after Pietro talks with Hugo.
+- Docs: Python docs in diagrammari's pages (diagrammari-py only releases), or in diagrammari-py?
+  To decide once the repository exists.
 
 ## Decision: two repositories, with a contract
 
