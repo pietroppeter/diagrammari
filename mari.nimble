@@ -16,3 +16,4 @@ requires "nim >= 2.0.0"
 
 feature "docs":
   requires "nimib >= 0.4.3"
+  requires "https://github.com/pietroppeter/tabelline"

@@ -59,6 +59,10 @@ Kept up to date as diagrammari changes:
 
 Posts, dated and not updated afterwards:
 
+- [Diagrams, a series in five parts](https://pietroppeter.github.io/diagrammari/devlog/diagrams-series/)
+  (7 Nov 2026): how diagrammari came about. The first post, and the index of a series on the
+  history of diagrams, everyday diagrams, making them yours, the name and the house style, each
+  part in the style of its own figure (`docs/series/`).
 - [Day one: from Mermaid to Pele to diagrammari](https://pietroppeter.github.io/diagrammari/devlog/day-one/)
   (7 Nov 2026): reading Pele, deciding to wrap it rather than rewrite it, and a first diagrammari.
 

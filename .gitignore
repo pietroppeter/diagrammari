@@ -14,5 +14,10 @@ docs/*/all
 tools/specexamples
 tools/specsuite_gen.nim
 tools/specsuite_out.json
-# the series keeps its parts as they were made, as standalone pages
-!docs/series/**/*.html
+# the series keeps parts 1-3 as they were made, as standalone pages, and the figures the
+# notebooks take from them; their nimib versions and parts 4-5 are generated like every page
+!docs/series/diagram-history/index.html
+!docs/series/everyday-diagrams/index.html
+!docs/series/personal-diagrams/index.html
+!docs/series/assets/*.html
+!docs/series/assets/*.svg

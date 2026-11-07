@@ -6,6 +6,12 @@
       "commit": "7cfe29cefd76b5110a0c7798f540b8c693b065cf",
       "version": ""
     },
+    "tabelline": {
+      "dir": "$deps/tabelline",
+      "url": "https://github.com/pietroppeter/tabelline",
+      "commit": "32bfe5fb6d5b42d5eef7925fe3062f0af4e89c87",
+      "version": ""
+    },
     "fusion": {
       "dir": "$deps/fusion",
       "url": "https://github.com/nim-lang/fusion",
@@ -39,6 +45,7 @@
     "--path:\"deps/markdown/src\"",
     "--path:\"deps/nimib/src\"",
     "--path:\"deps/parsetoml/src\"",
+    "--path:\"deps/tabelline/src\"",
     "--define:\"features.mari.docs\"",
     "--define:\"feature.mari.docs\"",
     "############# end Atlas config section   ##########",
@@ -65,6 +72,7 @@
       "",
       "feature \"docs\":",
       "  requires \"nimib >= 0.4.3\"",
+      "  requires \"https://github.com/pietroppeter/tabelline\"",
       ""
     ]
   },
