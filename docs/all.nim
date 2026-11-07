@@ -5,4 +5,4 @@
 import index, explainer, specs
 import series/[diagram_history, everyday_diagrams, personal_diagrams, a_name_from_the_sea,
               a_house_style]
-import devlog/[day_one, diagrams_series, index as devlogIndex]
+import devlog/[day_one, diagrams_series, python_jupyter_marimo, index as devlogIndex]

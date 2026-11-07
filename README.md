@@ -60,6 +60,8 @@ Kept up to date as diagrammari changes:
 
 Posts, dated and not updated afterwards:
 
+- [diagrammari in Python, Jupyter and marimo: the evidence](https://pietroppeter.github.io/diagrammari/devlog/python-jupyter-marimo/)
+  (7 Nov 2026): the Python proof of concept as a case file, and one repo or two.
 - [Diagrams, a series in five parts](https://pietroppeter.github.io/diagrammari/devlog/diagrams-series/)
   (7 Nov 2026): how diagrammari came about. The first post, and the index of a series on the
   history of diagrams, everyday diagrams, making them yours, the name and the house style, each
