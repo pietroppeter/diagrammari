@@ -42,7 +42,7 @@ platform wheels: Nim installed in `before-all` (choosenim or the nightlies, as
 Python version, `CIBW_BUILD` can be one CPython per platform. Publishing with PyPI trusted
 publishing from a `v*` tag.
 
-### Running Pele: Node now, QuickJS next
+### Running Pele: QuickJS compiled in, Node as an option
 
 - **Node from PyPI** (`nodejs-wheel-binaries` 24.x): works, checked with no `node` on the PATH.
   About 200 MB installed: an extra, `diagrammari[node]`, not a dependency.
@@ -50,10 +50,14 @@ publishing from a `v*` tag.
 - **QuickJS** (`quickjs` on PyPI, 4.8 MB): Pele runs, under 1 ms a diagram once loaded, and the
   SVG is byte-identical to Node's for a flowchart, a sequence, a pie and a class diagram.
 
-QuickJS is small and written in C, so it can be compiled into the Nim library itself
-(quickjs-ng, MIT): then neither Python nor nimib pages need Node. That is the BACKLOG item
-"Pele in QuickJS"; this change keeps Node so it does not wait for it, and the C ABI does not
-change when the engine does.
+- **QuickJS compiled into the Nim library** (quickjs-ng 0.18, MIT, vendored and pinned): Nim's
+  `{.compile.}` builds its four C files, a 40-line C shim gives Nim four functions. Checked: the
+  same SVG as Node for the four types, 0.7 to 0.8 ms a diagram after a 100 ms load, the library
+  grows from 1.1 to 2.4 MB, the wheel is 1.3 MB.
+
+Chosen: QuickJS compiled in, by default; Node behind `MARI_ENGINE=node`, kept while QuickJS is
+new. The C ABI is the same for both. The same engine can serve nimib pages (BACKLOG "Pele in
+QuickJS for the Nim library").
 
 ### Names
 

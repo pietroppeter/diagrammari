@@ -7,14 +7,15 @@
     d.layer = w.layer      # the personal layer, plain JSON
     d.save("a.svg")        # Mermaid + layer -> personalized SVG, drawn headless by Nim + Pele
 
-The drawing is done by a Nim library (libmari, loaded with ctypes) that runs Pele in Node.
+The drawing is done by a Nim library (libmari, loaded with ctypes) that runs Pele in QuickJS,
+compiled in (or in Node, with MARI_ENGINE=node).
 """
 from __future__ import annotations
 
 import ctypes, json, os, sys
 from pathlib import Path
 
-__all__ = ["Diagram", "DiagramError", "draw", "pele_version"]
+__all__ = ["Diagram", "DiagramError", "draw", "pele_version", "engine"]
 _here = Path(__file__).parent
 _libname = {"win32": "mari.dll", "darwin": "libmari.dylib"}.get(sys.platform, "libmari.so")
 
@@ -33,6 +34,7 @@ def _load():
     lib.mari_draw.restype = ctypes.c_void_p
     lib.mari_free.argtypes = [ctypes.c_void_p]
     lib.mari_pele_version.restype = ctypes.c_char_p
+    lib.mari_engine.restype = ctypes.c_char_p
     return lib
 
 
@@ -62,6 +64,11 @@ def draw(source: str, layer: dict | None = None, **options) -> dict:
 
 def pele_version() -> str:
     return _lib.mari_pele_version().decode()
+
+
+def engine() -> str:
+    """Where Pele runs: "quickjs" (compiled into the library) or "node" (MARI_ENGINE=node)."""
+    return _lib.mari_engine().decode()
 
 
 class Diagram:

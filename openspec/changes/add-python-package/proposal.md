@@ -14,8 +14,9 @@ library to Python. From the thread "Plan diagrammari for Python, Jupyter and mar
   (`_repr_svg_`) and marimo (`_mime_`). `mari.draw(source, layer, **options)` for the answer as a
   dict. `mari.DiagramError` with Pele's code, line, column and snippet.
 - Layers are plain dicts (the JSON of `add-personal-layer`): load, save and diff them as files.
-- Pele runs in Node: `$MARI_NODE`, `node` on the PATH, or the extra `diagrammari[node]`
-  (`nodejs-wheel-binaries`). Embedding QuickJS instead is a separate BACKLOG item.
+- Pele runs in QuickJS compiled into the library, so nothing else is installed (checked in the
+  proof of concept: same SVG as Node). `MARI_ENGINE=node` runs it in Node instead: `$MARI_NODE`,
+  the extra `diagrammari[node]` (`nodejs-wheel-binaries`), or `node` on the PATH.
 - Wheels for Linux (x86-64, arm64), macOS (arm64, x86-64) and Windows, built by cibuildwheel in
   GitHub Actions with Nim installed, published with PyPI trusted publishing on a tag. An sdist
   that builds with Nim on the PATH.

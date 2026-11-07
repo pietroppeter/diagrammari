@@ -8,7 +8,7 @@ requires-python = ">=3.9"
 dependencies = []
 
 [project.optional-dependencies]
-# Node to draw headless (export); without it, set MARI_NODE or have node on the PATH.
+# Node, only for MARI_ENGINE=node (Pele runs in QuickJS, compiled in, by default).
 node = ["nodejs-wheel-binaries>=22"]
 # The editor widget for Jupyter and marimo.
 widget = ["anywidget>=0.9"]
@@ -25,4 +25,4 @@ artifacts = ["src/mari/_lib/*", "src/mari/pele.global.js"]
 path = "hatch_build.py"
 
 [tool.hatch.build.targets.sdist]
-include = ["src/mari", "nim", "hatch_build.py", "README.md"]
+include = ["src/mari", "nim", "hatch_build.py", "README.md"]  # nim/vendor/quickjs included

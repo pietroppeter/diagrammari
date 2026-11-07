@@ -34,10 +34,18 @@ True {'nodes': ['a', 'b'], 'edges': ['L_a_b_0']}
 syntax 2 8
 ```
 
-### Requirement: Finding Node
-The package SHALL run Pele in Node from `$MARI_NODE`, or from the `nodejs-wheel-binaries` wheel
-when `diagrammari[node]` is installed, or from `node` on the PATH, in that order.
+### Requirement: No Node needed
+The package SHALL run Pele in QuickJS compiled into the library, and give the same SVG as Pele
+in Node. `mari.engine()` SHALL say which engine runs.
 
-#### Scenario: No Node
-- **WHEN** none of the three is there
-- **THEN** drawing raises `DiagramError` with code `no-node` and a message naming `diagrammari[node]`
+```python
+print(mari.engine())
+```
+
+```text
+quickjs
+```
+
+#### Scenario: Node on request
+- **WHEN** `MARI_ENGINE=node` is set
+- **THEN** Pele runs in Node from `$MARI_NODE`, the `nodejs-wheel-binaries` wheel (`diagrammari[node]`) or `node` on the PATH, in that order, and drawing raises `DiagramError` with code `no-node` when none is there

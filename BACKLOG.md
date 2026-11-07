@@ -57,11 +57,10 @@ of it is in `experiments/python/`.
   `diagrammari[node]`; wheels by cibuildwheel.
 - **The editor in Jupyter, marimo and a browser tab** (M). *Proposed: `add-notebook-editor`.*
   One anywidget module; `mo.ui.anywidget` in marimo; `edit_in_browser()` from a script.
-- **Pele in QuickJS** (M). Compile QuickJS (quickjs-ng, MIT, C) into the Nim library and run Pele
-  there instead of Node: no Node for nimib pages or Python, a wheel of about 5 MB instead of a
-  200 MB Node, and under 1 ms a diagram. Checked through the `quickjs` PyPI package: the same SVG
-  as Node, byte for byte, for four diagram types. Not yet compiled from Nim (the sandbox did not
-  allow building C cloned from GitHub). Would also make `rmAuto` always static.
+- **Pele in QuickJS for the Nim library** (M). Compile QuickJS (quickjs-ng, MIT, C) into `mari`
+  and run Pele there instead of Node, for nimib pages too: no Node at all, about 0.8 ms a diagram,
+  and `rmAuto` always static. Done in the proof of concept (`experiments/python/nim/qjs.nim`):
+  the same SVG as Node, byte for byte, for four diagram types; the Python package uses it.
 - **One layer engine** (M). The geometry is written twice today (JavaScript in the editor, Nim in
   `layer.nim`). Write it once in Nim and compile it to JavaScript for the editor (`nim js`), so
   the editor and the export cannot disagree.

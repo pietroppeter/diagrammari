@@ -8,11 +8,13 @@
 ## answer:  {"ok": true, "svg": "...", "type": "flowchart", "ids": {"nodes": [...], "edges": [...]}}
 ##          or {"ok": false, "code": "syntax", "message": ..., "line": 2, "column": 9, ...}
 ##
-## Pele runs in one Node process, as in src/mari/pele.nim; Node is `$MARI_NODE` or on the PATH
-## (the Python package sets MARI_NODE to the Node of the `nodejs-wheel-binaries` wheel).
+## Pele runs in QuickJS, compiled into the library (qjs.nim, vendor/quickjs): no Node needed.
+## With `MARI_ENGINE=node`, it runs in one Node process instead, as in src/mari/pele.nim; Node is
+## `$MARI_NODE` or on the PATH (the Python package sets MARI_NODE to the Node of the
+## `nodejs-wheel-binaries` wheel when `diagrammari[node]` is installed).
 
 import std/[os, osproc, streams, json, tables, strutils, sequtils]
-import layer
+import layer, qjs
 
 const
   peleVersion = "1.13.0"
@@ -45,7 +47,7 @@ readline.createInterface({ input: process.stdin }).on('line', (line) => {
 
 var server: Process
 
-proc ask(req: JsonNode): JsonNode =
+proc askNode(req: JsonNode): JsonNode =
   if server == nil or not server.running:
     let node = (let e = getEnv("MARI_NODE"); if e.len > 0: e else: findExe("node"))
     if node.len == 0:
@@ -61,6 +63,12 @@ proc ask(req: JsonNode): JsonNode =
   if not server.outputStream.readLine(line):
     return %*{"ok": false, "code": "node", "message": "the Pele process stopped"}
   parseJson(line)
+
+proc ask(req: JsonNode): JsonNode =
+  if getEnv("MARI_ENGINE") == "node": askNode(req) else: askQjs(peleBundle, req)
+
+proc mari_engine(): cstring {.exportc, dynlib, cdecl.} =
+  if getEnv("MARI_ENGINE") == "node": "node" else: "quickjs"
 
 proc draw(req: JsonNode): JsonNode =
   let lay = if req{"layer"} != nil and req["layer"].kind == JObject: req["layer"] else: newJObject()
