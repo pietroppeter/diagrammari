@@ -1,6 +1,6 @@
 ## devlog: 07 Nov 2026 | diagrammari in Python, Jupyter and marimo: the evidence | A case file: a Nim library in a Python wheel with uv add, Pele in QuickJS compiled in, one editor for Jupyter and marimo, the personalized SVG exported, and the case of one repo or two, judged twice.
 ## Written as a case file, in its own look (devlog posts keep their own themes for now). The
-## content is docs/assets/python-case/case.html, first published as a claude.ai artifact and in
+## content is docs/assets/python-case/case.template.txt, first published as a claude.ai artifact and in
 ## claude-artifacts; the outputs in it are files in docs/assets/python-case, copied from real
 ## runs. Fonts, screenshots, Pele and the editor are inlined, so the page loads nothing remote.
 ## The loop diagram at the top is drawn here, at build time, by mari.
@@ -27,7 +27,7 @@ let wide = diagram(loop).toSvg(opts).svg
 let narrow = diagram(loop.replace("flowchart LR", "flowchart TD")).toSvg(
   renderOptions(fontFamily = "IBM Plex Sans, sans-serif", idPrefix = "pipn-")).svg
 
-var page = readFile(ev / "case.html")
+var page = readFile(ev / "case.template.txt")
 for (k, v) in [("{{build}}", text("build_qjs.txt")), ("{{wheel}}", text("wheel.txt")),
                ("{{add}}", text("add.txt")), ("{{run}}", text("run.txt")), ("{{qjs}}", text("qjs.txt")),
                ("{{demo_py}}", text("demo.py")), ("{{add_qjs}}", text("add_qjs.txt")),
