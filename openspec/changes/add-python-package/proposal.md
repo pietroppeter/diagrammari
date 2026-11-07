@@ -35,6 +35,6 @@ library to Python. From the thread "Plan diagrammari for Python, Jupyter and mar
 
 ## Impact
 
-A `python/` folder at the repository root (pyproject, hatchling build hook, `src/mari`), a C ABI
+`pyproject.toml` and the hatchling build hook at the repository root, Python code in `python/mari/`, a C ABI
 module `src/mari/capi.nim` beside the Nim library, a `wheels.yml` workflow, a page in the docs.
 The core stays standard library only; nothing changes for Nim users.

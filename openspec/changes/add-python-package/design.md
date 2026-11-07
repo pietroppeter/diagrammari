@@ -76,6 +76,7 @@ state without a converter.
 
 ## Open Questions
 
-- Does Pietro want the Python package in this repository (`python/`) or in its own
-  (`nimib-land/diagrammari-py`)? This proposal says here, so the Nim and Python versions move
-  together.
+- One repository or two? First-degree verdict (7 Nov 2026, the explainer's "case 2"): this
+  repository, because two copies of Pele, QuickJS, the C ABI and the spec would drift.
+  `pyproject.toml` goes at the root, so the sdist can include `src/mari`; Python code in
+  `python/mari/`; wheels on `py-v*` tags. Pietro has the final word.
