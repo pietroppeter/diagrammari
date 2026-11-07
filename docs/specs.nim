@@ -161,7 +161,7 @@ nbRawHtml: &"""<p class="kicker">Specs · living page · rebuilt on every push</
 <h1>How diagrammari behaves</h1>
 <p class="lede">Every behaviour agreed so far, written down with <a href="https://github.com/Fission-AI/OpenSpec">OpenSpec</a>:
 {specs.len} specs, {nreq} requirements, {total} examples. Each example ran against the code while this page was
-built: <span class="timbro">{passing} of {total} pass</span></p>
+built: <span class="timbro{(if passing == total: " ok" else: "")}">{passing} of {total} pass</span></p>
 <div class="filterbar nota azzurra" id="filterbar" hidden></div>"""
 
 nbText: """

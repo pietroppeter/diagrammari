@@ -102,7 +102,10 @@ h1, h2, h3, h4 { font-family: var(--letter); font-weight: 400; color: var(--ink)
 h1 { font-size: 2.3rem; margin: 1.2rem 0 .4rem; }
 h2 { font-size: 1.75rem; margin: 2.6rem 0 .8rem; padding-bottom: .15rem; border-bottom: 1.5px solid var(--ink);
   scroll-margin-top: 1rem; }
-h2::before { content: "▸ "; color: var(--red); }
+/* one marker, everywhere: a red ink dot before every section heading and every entry of the indice.
+   The triangle is kept for warnings (.nota.avviso). */
+h2::before, .indice > ul > li::before { content: ""; display: inline-block; width: .42em; height: .42em;
+  border-radius: 50%; background: var(--red); margin-right: .5em; vertical-align: .14em; }
 h3 { font-size: 1.32rem; margin: 1.8rem 0 .5rem; color: var(--blue); scroll-margin-top: 1rem; }
 a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 strong { font-weight: 600; }
@@ -119,51 +122,57 @@ body pre > code { background: var(--lucido); border: 1px solid #B9C7D6; border-r
   box-shadow: 1px 2px 0 rgba(36, 87, 166, .07); }
 pre.nb-output { background: transparent; border: 1px dashed var(--rule); white-space: pre; color: var(--graphite); }
 pre.nb-output::before { content: "output"; display: block; font: .85rem var(--letter); color: var(--red); margin-bottom: .1rem; }
-:not(pre) > code { font: .86em var(--mono); background: rgba(36, 87, 166, .07); padding: .05em .3em; border-radius: 3px; }
+:not(pre) > code { white-space: nowrap; font: .86em var(--mono); background: rgba(36, 87, 166, .07); padding: .05em .3em; border-radius: 3px; }
 .hljs-keyword { color: #7A2E8E; font-weight: 600; } .hljs-string { color: #2F6B3F; } .hljs-number { color: #A0521B; }
 .hljs-comment { color: #7A8394; font-style: italic; } .hljs-type { color: #2457A6; } .hljs-built_in { color: #9B3020; }
 .hljs-literal { color: #A0521B; } .hljs-meta { color: #5B4E98; }
 
 /* diagrams pinned on graph paper, with registration marks */
-figure.mari { position: relative; margin: 1.4rem 0 1.8rem; padding: 18px 14px 12px; text-align: center;
+figure.mari { margin: 1.4rem 0 1.8rem; padding: 18px 14px 12px; text-align: center;
   background-color: #FFFDF7;
   background-image: linear-gradient(var(--cm) 1px, transparent 1px), linear-gradient(90deg, var(--cm) 1px, transparent 1px),
     linear-gradient(var(--mm) 1px, transparent 1px), linear-gradient(90deg, var(--mm) 1px, transparent 1px);
   background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
   border: 1px solid #E2CDB8; }
-figure.mari::before, figure.mari::after { content: ""; position: absolute; width: 14px; height: 14px;
-  border: 0 solid var(--frame); }
-figure.mari::before { top: 5px; left: 5px; border-top-width: 1.5px; border-left-width: 1.5px; }
-figure.mari::after { bottom: 5px; right: 5px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
 figure.mari svg { max-width: 100%; height: auto; }
 figure.mari figcaption { font: .9rem/1.4 var(--text); color: var(--graphite); margin-top: .5rem; text-align: left; }
 figure.mari figcaption b { font: 1rem var(--letter); color: var(--red); font-weight: 400; }
 details.mari-text { margin: -1.2rem 0 1.6rem; }
 details.mari-text summary { cursor: pointer; font: .95rem var(--letter); color: var(--muted); }
+/* side by side: the blocks of nbBeside, one column on a phone */
+.beside { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: .2rem 1.2rem;
+  align-items: start; margin: 1rem 0 1.4rem; }
+.beside > * { min-width: 0; }
+.beside figure.mari { margin: 1rem 0 .6rem; }
+.beside pre { margin: 1rem 0 .4rem; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 0 1.2rem; }
 
-main table { border-collapse: collapse; margin: 1rem 0; background: var(--sheet); font-size: .93rem; }
+main table { display: block; overflow-x: auto; max-width: max-content; border-collapse: collapse; margin: 1rem 0; background: var(--sheet); font-size: .93rem; }
 main table th, main table td { border: 1px solid var(--rule); padding: .3rem .55rem; text-align: left; vertical-align: top; }
+main table td:last-child { min-width: 9rem; }
 main table th { font: 600 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .scroll { overflow-x: auto; }
 
 /* the indice delle tavole */
 .indice { border: 1.5px solid var(--frame); padding: .8rem 1.2rem 1rem; margin: 1.4rem 0 2rem; max-width: 36rem; background: var(--sheet); }
 .indice h2.indice-title { font-size: 1.3rem; border: 0; margin: 0 0 .4rem; padding: 0; }
-.indice h2.indice-title::before { content: ""; }
-.indice ol { margin: 0; padding-left: 1.6rem; font: 1.02rem/1.6 var(--letter); }
-.indice ol ol { font-size: .95rem; padding-left: 1rem; list-style: none; }
-.indice ol ol li::before { content: "– "; color: var(--muted); }
+.indice h2.indice-title::before { display: none; }
+.indice > ul > li { padding-left: .92em; text-indent: -.92em; }
+.indice > ul > li > ul { text-indent: 0; }
+.indice ul { margin: 0; padding: 0; list-style: none; font: 1.02rem/1.6 var(--letter); }
+.indice ul ul { font-size: .95rem; padding-left: .6em; }
 .indice a { text-decoration: none; color: var(--ink); }
 .indice a:hover { color: var(--blue); text-decoration: underline; }
 
 /* notes, stamps, cards */
 .nota { border: 1px solid var(--rule); border-left: 4px solid var(--blue); background: #FFFEFA; padding: .7rem 1rem; margin: 1.3rem 0; }
-.nota.rossa { border-left-color: var(--red); } .nota.ocra { border-left-color: #C98A1B; } .nota.verde { border-left-color: #3F7D4E; }
+.nota.avviso { border-left-color: var(--red); }
+.nota.avviso .titolo::before { content: "▲ "; color: var(--red); }
 .nota > :first-child { margin-top: 0; } .nota > :last-child { margin-bottom: 0; }
 .nota .titolo { font: 1.12rem var(--letter); color: var(--ink); display: block; }
+.timbro.ok { color: #3F7D4E; border-color: #3F7D4E; }
 .timbro { display: inline-block; font: .95rem var(--letter); color: var(--red); border: 1.5px solid var(--red);
-  border-radius: 3px; padding: 0 .45rem; transform: rotate(-2deg); }
+  border-radius: 3px; padding: 0 .45rem; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 1rem; margin: 1.2rem 0; }
 .cards .nota { margin: 0; }
 footer { font: .95rem var(--letter); color: var(--muted); padding: 1.5rem 0 .5rem; text-align: center; border-top: 1px solid var(--rule); margin-top: 2rem; }
@@ -252,15 +261,15 @@ newNbBlock(NbIndice):
       for (level, text) in headingsOf(b.NbText.text):
         let link = &"""<a href="#{slugify(text)}">{text}</a>"""
         if level == 2:
-          if openSub: (items.add "</ol>"; openSub = false)
+          if openSub: (items.add "</ul>"; openSub = false)
           if items.len > 0: items.add "</li>"
           items.add "<li>" & link
         else:
-          if not openSub: (items.add "<ol>"; openSub = true)
+          if not openSub: (items.add "<ul>"; openSub = true)
           items.add "<li>" & link & "</li>"
-    if openSub: items.add "</ol>"
+    if openSub: items.add "</ul>"
     if items.len > 0: items.add "</li>"
-    &"""<nav class="indice" aria-label="{blk.title}"><h2 class="indice-title">{blk.title}</h2><ol>{items}</ol></nav>"""
+    &"""<nav class="indice" aria-label="{blk.title}"><h2 class="indice-title">{blk.title}</h2><ul>{items}</ul></nav>"""
 
 proc indice*(nb: var Nb, title = "Indice") =
   nb.add newNbIndice(title = title)
@@ -269,8 +278,21 @@ template nbIndice*(ttitle = "Indice") =
   ## The table of contents of the page's `##` and `###` headings, built when the page is saved.
   nb.indice(ttitle)
 
+template nbBeside*(body: untyped) =
+  ## The blocks made in `body` side by side, one column on a phone. Wrap a block group that
+  ## must stay together (code and its drawing) in `nbCell`.
+  nbRawHtml: "<div class=\"beside\">"
+  body
+  nbRawHtml: "</div>"
+
+template nbCell*(body: untyped) =
+  ## The blocks made in `body` as one cell of `nbBeside`.
+  nbRawHtml: "<div>"
+  body
+  nbRawHtml: "</div>"
+
 template nbNota*(text: string, color = "") =
-  ## A note in the margin; `color` is "", "rossa", "ocra" or "verde".
+  ## A note in the margin; `color` is "" or "avviso" (a warning, marked with the triangle).
   nbRawHtml: "<div class=\"nota " & color & "\">" & markdownToHtml(text) & "</div>"
 
 # ----------------------------------------------------------------------------------------- theme
