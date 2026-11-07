@@ -1,0 +1,8 @@
+dist/
+build/
+src/mari/_lib/
+src/mari/pele.global.js
+*.svg
+__pycache__/
+.venv/
+uv.lock
