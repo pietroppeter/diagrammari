@@ -2,7 +2,7 @@
 ## outside the series (explainer, specs, devlog). Three specimens, each the same small page drawn
 ## in a different mix of Neurath, Enzo Mari, Tufte and the sea of part 4.
 ## Writes docs/series/a-house-style/index.html.
-import std/[os, json, strformat]
+import std/[os, json, strformat, strutils]
 import nimib except md
 import tabelline, tabelline/nimib
 import mari, mari/nimib
@@ -59,9 +59,9 @@ one style that does not change from page to page.
 
 Pietro's brief for it, in short: *a mix along Neurath and Enzo Mari, with a hint of Tufte and the
 whimsical touch of part 4. It may sound impossible and come out not great, so we iterate.* This
-page is the first round, and the page itself is a fifth attempt: Jost for the text, as Futura was
-Isotype's face; Crimson Pro italic for the notes, after Tufte; flat colours from the sea; black
-lines for structure.
+page is the first round. The page itself is one of the candidates, D below: Jost for the
+text, as Futura was Isotype's face; Crimson Pro italic for the notes, after Tufte; flat colours
+from the sea; black lines for structure.
 """
 
 nbRawHtml: """<h2><span class="n">1</span>Four ingredients</h2>
@@ -86,9 +86,10 @@ scenarios and examples that run (the specs), dated posts (the devlog), code, tab
 and diagrams.
 """
 
-nbRawHtml: """<h2><span class="n">2</span>Three specimens</h2>
-<p>The same small page three times: a title, a paragraph, a diagram drawn by mari with that
-specimen's theme, a table and a line of code. Only the mix changes.</p>
+nbRawHtml: """<h2><span class="n">2</span>Four candidates</h2>
+<p>Three specimens show the same small page three times: a title, a paragraph, a diagram drawn by
+mari with that specimen's theme, a table and a line of code. Only the mix changes. The fourth
+candidate, D, is the page you are reading.</p>
 <div class="specimens">
 <section class="specimen spec-a"><span class="tag">A · officina</span>
 <h4>Drawing a flowchart</h4>
@@ -119,37 +120,49 @@ nbRawHtml: """<table class="mini"><tr><th>builder</th><th>diagram</th><th>since<
 <tr><td>flowchart</td><td>boxes and arrows</td><td>0.1</td></tr><tr><td>sequence</td><td>messages in time</td><td>0.1</td></tr>
 <tr><td>layer</td><td>yours on top</td><td>to come</td></tr></table>
 <p><code>nbDiagram flowchart(LR): "a" --&gt; "b"</code></p></section>
+<section class="specimen spec-d"><span class="tag">D · foglio di lavoro</span>
+<h4>This page</h4>
+<p>The working sheet: Jost and Crimson Pro italic notes on cream paper, numbered circles for
+sections, black lines, a coral full stop. The middle of the mix, with no single figure in front.
+Scroll up and down to judge it.</p></section>
 </div>"""
 
 nbText: """
-How much of each ingredient went into each specimen, by eye. The table is tabelline's, with its
-smallest chart, a bar in each cell:
+How much of each ingredient went into each candidate, by eye. In the Isotype manner the mix is
+counted, not measured: twenty squares per row, one square for every 5 percent, coloured by
+ingredient. The table is tabelline's; the squares are a formatter on one column.
 """
 
 nbCode:
+  const colours = ["#2f6fa8", "#111111", "#a39a8c", "#9cc9d9"]  # Neurath, Mari, Tufte, the sea
   let mix = tableData:
-    specimen: ["A · officina", "B · isotype al mare", "C · quaderno di bordo", "this page"]
-    neurath: [20, 55, 10, 35]
-    mari: [60, 15, 10, 35]
-    tufte: [15, 10, 55, 20]
-    sea: [5, 20, 25, 10]
-  let weights = tabella(mix, rownameCol = "specimen"):
-    tabHeader "The mix", "percent of each ingredient, by eye"
-    fmtBar ["neurath"], color = "#2f6fa8", width = "5em", domain = (0.0, 100.0)
-    fmtBar ["mari"], color = "#111111", width = "5em", domain = (0.0, 100.0)
-    fmtBar ["tufte"], color = "#77716a", width = "5em", domain = (0.0, 100.0)
-    fmtBar ["sea"], color = "#9cc9d9", width = "5em", domain = (0.0, 100.0)
-    colsLabel {"neurath": "Neurath", "mari": "Mari", "tufte": "Tufte", "sea": "the sea"}
+    candidate: ["A · officina", "B · isotype al mare", "C · quaderno di bordo",
+                "D · foglio di lavoro (this page)"]
+    squares: ["4 12 3 1", "11 3 2 4", "2 2 11 5", "7 7 4 2"]     # out of 20
+  proc squaresHtml(counts: string): string =
+    let ns = counts.splitWhitespace()
+    for k, n in ns:
+      for _ in 1 .. n.parseInt:
+        result.add &"""<span class="sq" style="background:{colours[k]}"></span>"""
+  let weights = tabella(mix, rownameCol = "candidate"):
+    tabHeader "The mix", "one square is 5 percent"
+    fmt ["squares"], proc (v: Value, ctx: RenderContext): string =
+      if ctx == rcHtml: squaresHtml(v.s) else: v.s
+    colsLabel {"squares": ""}
     tabOptions(tableFontNames = "Jost, sans-serif", tableBackgroundColor = "transparent",
                tableBorderTopColor = "#161616", tableBorderBottomColor = "#161616",
                columnLabelsBorderBottomColor = "#161616", tableBodyHlinesColor = "#d8cfbd",
                headingAlign = "left", tableWidth = "100%")
 nbTable weights
+nbRawHtml: """<p class="legend">""" &
+  """<span class="sq" style="background:#2f6fa8"></span> Neurath &nbsp; <span class="sq" style="background:#111"></span> Mari &nbsp; """ &
+  """<span class="sq" style="background:#a39a8c"></span> Tufte &nbsp; <span class="sq" style="background:#9cc9d9"></span> the sea</p>"""
 
 nbRawHtml: """<h2><span class="n">3</span>How we choose</h2>"""
 
 nbText: """
-- **Pietro picks, or mixes.** "A's tables with C's text" is a fine answer. Things to look at: the
+- **Pietro picks, or mixes.** First reading, 7 November: A (*officina*) and B (*isotype al
+  mare*) are the ones he likes. "A's tables with B's colours" is a fine answer. Things to look at: the
   specs page, which is the page read most; the code, which must stay small and clear; and the
   diagrams, which must look like they belong to the page.
 - **Then it becomes a spec.** The chosen style is an OpenSpec change, *house-style*: the
