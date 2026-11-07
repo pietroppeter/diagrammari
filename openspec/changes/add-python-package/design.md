@@ -76,7 +76,20 @@ state without a converter.
 
 ## Open Questions
 
-- One repository or two? First-degree verdict (7 Nov 2026, the explainer's "case 2"): this
-  repository, because two copies of Pele, QuickJS, the C ABI and the spec would drift.
-  `pyproject.toml` goes at the root, so the sdist can include `src/mari`; Python code in
-  `python/mari/`; wheels on `py-v*` tags. Pietro has the final word.
+- Which org: `pietroppeter/diagrammari-py` or `nimib-land/`? It follows diagrammari.
+
+## Decision: two repositories, with a contract
+
+First degree (the explainer's "case 2") said one repository, because two copies drift. On
+appeal, judged with agents doing the work, the ruling is two repositories: agents make keeping
+two places in step cheap, while one repository makes parallel threads collide (as on
+BACKLOG.md on 7 Nov 2026), mixes two toolchains in one AGENTS.md, and puts a 15-minute wheel
+matrix on every Nim PR. It holds only with:
+
+1. diagrammari owns everything that must match: the Nim library, the C ABI
+   (`src/mari/capi.nim`), Pele, QuickJS, the layer engine, the editor's JavaScript, and the specs
+   with their examples;
+2. diagrammari-py owns the Python side (pyproject, Python API, widget wrapper, wheels, notebook
+   docs), pins diagrammari to a tag, and runs the shared examples against the pin in CI;
+3. a routine opens the bump PR in diagrammari-py when diagrammari tags a release; nothing goes to
+   PyPI until it is green.

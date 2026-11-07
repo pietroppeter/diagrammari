@@ -35,6 +35,6 @@ library to Python. From the thread "Plan diagrammari for Python, Jupyter and mar
 
 ## Impact
 
-`pyproject.toml` and the hatchling build hook at the repository root, Python code in `python/mari/`, a C ABI
+In diagrammari: the C ABI module `src/mari/capi.nim` (with QuickJS) and the editor's JavaScript. A new repository diagrammari-py for the rest (pyproject, hatchling build hook, `mari/`, wheels workflow), pinning diagrammari to a tag (design: "two repositories, with a contract"), a C ABI
 module `src/mari/capi.nim` beside the Nim library, a `wheels.yml` workflow, a page in the docs.
 The core stays standard library only; nothing changes for Nim users.
