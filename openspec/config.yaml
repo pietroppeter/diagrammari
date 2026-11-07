@@ -1,0 +1,39 @@
+schema: spec-driven
+
+context: |
+  diagrammari is a Nim library for diagrams drawn by Pele (https://pele.run, kepano's Mermaid
+  renderer): a Diagram is Mermaid text with its kind; typed builders (flowchart, sequence, pie,
+  timeline) write correct Mermaid with verbs that take the diagram and return a new one; Pele,
+  shipped as src/mari/vendor/pele.global.js and pinned in peleVersion, draws it as SVG at
+  build time through one Node process (src/mari/pele.nim) or in the browser (render_html.nim).
+  The core needs only Nim's standard library (and Node to draw at build time); nimib is needed
+  only by src/mari/nimib.nim and the docs.
+  Every page is a nimib notebook in docs/ built by CI (docs/all.nim) and served by GitHub Pages;
+  the HTML is not committed. Pietro reviews on his phone: a change is first shown as a published
+  preview, nothing goes to main without his go, one clean PR per change.
+  Write specs and proposals in plain, short English sentences, like the devlog.
+
+rules:
+  proposal:
+    - Name where the change comes from (a BACKLOG.md entry, an issue, a project thread) and the PR that builds it
+    - Include a "Differences from Mermaid and Pele" section, listing every difference in syntax and
+      behaviour from Mermaid's documentation and Pele's, or saying there are none
+    - Name builder verbs after Mermaid's keywords in camelCase; say why when a name differs (a Nim keyword, like end or else)
+  specs:
+    - Give every requirement that describes Nim API an example, as the way-of-working spec says: a
+      ```nim block after the requirement text, followed by a ```text block with what it prints.
+      `echo d` prints a diagram's Mermaid text, and the specs page shows the diagram Pele draws
+    - Outputs are written by hand in a proposal and corrected with `nim r tools/specexamples.nim --update`
+      once the change is built
+  tasks:
+    - End with tasks to run `nim r tests/all.nim` and `nim r tools/specexamples.nim`, and to rebuild the docs
+
+operations:
+  apply:
+    guidance:
+      - Examples in openspec/specs must keep passing; the change's own examples should pass when it is done
+      - Show Pietro a preview of the pages before asking to merge
+  archive:
+    guidance:
+      - Remove the change's entry from BACKLOG.md and add a CHANGELOG.md line under Unreleased, with the PR number
+      - Add or update the devlog post that tells the change

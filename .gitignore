@@ -1,0 +1,18 @@
+deps/
+nimcache/
+# every page is generated (docs/all.nim) and built by CI (.github/workflows/pages.yml)
+*.html
+!tests/data/*.html
+*.svg
+!docs/assets/**/*.svg
+# compiled binaries
+tests/all
+tests/test_*
+!tests/test_*.nim
+docs/all
+docs/*/all
+tools/specexamples
+tools/specsuite_gen.nim
+tools/specsuite_out.json
+# the series keeps its parts as they were made, as standalone pages
+!docs/series/**/*.html
