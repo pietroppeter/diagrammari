@@ -14,6 +14,7 @@ const
     ("4", "a-name-from-the-sea", "A Name from the Sea"),
     ("5", "a-house-style", "A House Style")]
   seriesIndex* = "../../devlog/diagrams-series/"
+  siteHome* = "../../"   ## every page of the series sits two folders below the site's root
 
 proc asset*(name: string): string = readFile(assets / name)
 
@@ -36,7 +37,7 @@ func serieHeader(blk: JsonNode, nb: Nb): string =
     let cls = if n == cur: " class=\"cur\"" else: ""
     links.add &"""<a href="{href}"{cls} title="{title}">{n}</a>"""
   let orig = nb.doc.context{"serie_original"}.getStr
-  &"""<nav class="serie"><a href="{seriesIndex}">Diagrams · a series in five parts</a><span class="parts">{links}</span>""" &
+  &"""<nav class="serie"><a href="{siteHome}"><b>diagrammari</b></a><a href="{seriesIndex}">Diagrams · a series in five parts</a><span class="parts">{links}</span>""" &
     (if orig.len > 0: &"""<a href="{orig}">hand-made version</a>""" else: "") & "</nav>"
 
 func serieFooter(blk: JsonNode, nb: Nb): string =
@@ -47,7 +48,7 @@ func serieFooter(blk: JsonNode, nb: Nb): string =
   &"""<footer class="serie">{what}, with
 tables by <a href="https://github.com/pietroppeter/tabelline">tabelline</a>. Part of
 <a href="{seriesIndex}">Diagrams, a series in five parts</a>, in
-<a href="{repoUrl}">diagrammari</a>.""" &
+<a href="{siteHome}">diagrammari</a> (<a href="{repoUrl}">source on GitHub</a>).""" &
     (if source.len == 0: "" else:
       """<details><summary>show the source of this page</summary><pre><code class="nohighlight nim">""" &
       source & "</code></pre></details>") & "</footer>"

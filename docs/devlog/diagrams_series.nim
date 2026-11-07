@@ -101,8 +101,10 @@ nbRawHtml: """<ol class="principles">
 <li><b>Every page is a notebook</b>, so the docs are programs that use the library they describe (parts 4 and 5).</li>
 </ol>"""
 
-nbRawHtml: """<p class="ending">The series is in <code>docs/series/</code> of
-<a href="https://github.com/pietroppeter/diagrammari">diagrammari</a>. Parts 4 and 5 are still being
-written.</p></article>"""
+nbRawHtml: """<p class="ending">Back to <a href="../../">diagrammari</a>: the
+<a href="../../explainer/">explainer</a>, the <a href="../../specs/">specs</a> and the
+<a href="../">devlog</a>. The series is in <code>docs/series/</code> of the
+<a href="https://github.com/pietroppeter/diagrammari">repository</a>; parts 4 and 5 are still
+being written.</p></article>"""
 
 nbSave
