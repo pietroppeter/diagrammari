@@ -15,7 +15,8 @@ needs no JavaScript) or in the reader's browser. It fits in
 **Site:** [pietroppeter.github.io/diagrammari](https://pietroppeter.github.io/diagrammari/), with the
 [explainer](https://pietroppeter.github.io/diagrammari/explainer/) (Mermaid, Pele, and the art of
 diagrams from Priestley to Sugiyama), the [specs](https://pietroppeter.github.io/diagrammari/specs/)
-and the [devlog](https://pietroppeter.github.io/diagrammari/devlog/).
+the [devlog](https://pietroppeter.github.io/diagrammari/devlog/), and how it all began: the
+[Diagrams series](https://pietroppeter.github.io/diagrammari/devlog/diagrams-series/), in five parts.
 
 > **Status: a first version, a proof of concept.** The API will change.
 
