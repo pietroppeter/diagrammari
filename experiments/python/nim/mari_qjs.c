@@ -22,7 +22,9 @@ static char *exception_text(JSContext *ctx) {
 void *mari_js_new(const char *code, size_t len, char **err) {
   MariJs *m = calloc(1, sizeof *m);
   m->rt = JS_NewRuntime(); m->ctx = JS_NewContext(m->rt);
-  JS_SetMaxStackSize(m->rt, 8 * 1024 * 1024);
+  /* below the smallest thread stack Python gives (8 MB on Linux, 16 MB on macOS, 1 MB+ on
+     Windows is set by the host): QuickJS raises "Maximum call stack size exceeded" instead */
+  JS_SetMaxStackSize(m->rt, 1024 * 1024);
   JSValue r = JS_Eval(m->ctx, code, len, "<mari>", JS_EVAL_TYPE_GLOBAL);
   *err = NULL;
   if (JS_IsException(r)) *err = exception_text(m->ctx);
@@ -33,6 +35,9 @@ void *mari_js_new(const char *code, size_t len, char **err) {
 /* Call global function `fn` with one string argument; a malloc'd string back. */
 char *mari_js_call(void *h, const char *fn, const char *arg, size_t len, int *ok) {
   MariJs *m = h; JSContext *ctx = m->ctx;
+  /* QuickJS measures the stack from where the runtime was made: a call from another thread
+     (a Python thread pool) would look like a stack overflow without this. */
+  JS_UpdateStackTop(m->rt);
   JSValue g = JS_GetGlobalObject(ctx), f = JS_GetPropertyStr(ctx, g, fn);
   JSValue a = JS_NewStringLen(ctx, arg, len);
   JSValue r = JS_Call(ctx, f, g, 1, &a);

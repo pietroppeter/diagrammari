@@ -19,7 +19,7 @@ import layer, qjs
 const
   peleVersion = "1.13.0"
   # the Pele bundle diagrammari ships (src/mari/vendor), not a copy
-  peleBundle = staticRead(currentSourcePath().parentDir / ".." / ".." / ".." / "src" / "mari" / "vendor" / "pele.global.js")
+  peleBundle = staticRead(currentSourcePath().replace('\\', '/').rsplit('/', 1)[0] & "/../../../src/mari/vendor/pele.global.js")
   runnerJs = """
 const vm = require('vm'), fs = require('fs'), readline = require('readline');
 vm.runInThisContext(fs.readFileSync(process.argv[2], 'utf8'));

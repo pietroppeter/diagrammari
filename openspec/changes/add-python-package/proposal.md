@@ -17,9 +17,9 @@ library to Python. From the thread "Plan diagrammari for Python, Jupyter and mar
 - Pele runs in QuickJS compiled into the library, so nothing else is installed (checked in the
   proof of concept: same SVG as Node). `MARI_ENGINE=node` runs it in Node instead: `$MARI_NODE`,
   the extra `diagrammari[node]` (`nodejs-wheel-binaries`), or `node` on the PATH.
-- Wheels for Linux (x86-64, arm64), macOS (arm64, x86-64) and Windows, built by cibuildwheel in
-  GitHub Actions with Nim installed, published with PyPI trusted publishing on a tag. An sdist
-  that builds with Nim on the PATH.
+- Wheels for Linux (x86-64, arm64), macOS (arm64, x86-64) and Windows, built with `nimlang`
+  (Nim and zig from PyPI) on one Linux runner, tested on each OS, published with PyPI trusted
+  publishing on a tag. An sdist that builds with `nimlang`, so no Nim or C compiler is needed.
 - Builders stay Nim-only for now: in Python, Mermaid text is the API (an f-string is a builder).
 
 ## Differences from Mermaid and Pele

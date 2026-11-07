@@ -29,18 +29,33 @@ Three ways were looked at.
   every Python 3. The API is JSON in, JSON out, which fits: a diagram is a string, a layer is
   JSON, the answer is an SVG.
 
-Chosen: C ABI + ctypes, for zero dependencies and one wheel per platform. The call is one per
-diagram, so JSON costs nothing that matters. nimpy stays the choice if the Python API grows into
-many fine-grained calls (builders).
+Chosen: C ABI + ctypes for 0.1. Measured on 7 Nov 2026, with both built from the same Nim code
+(page: https://pietroppeter.github.io/claude-artifacts/nim-python-bridges/), the two reasons
+above hold for nimpy too: it is compiled in, so it adds no run-time dependency, and one module
+loads in Python 3.9 to 3.14. Speed is the same (0.8 ms a diagram, under 0.1 µs a call). What
+is left for the C ABI: a language-neutral library, the GIL released during a draw, and a
+wrapper already written. What is left for nimpy: argument errors are Python exceptions, where a
+ctypes mistake segfaults, and Python objects cross without JSON. nimpy is the choice if the
+Python API grows into many fine-grained calls (builders); a nimpy module can live beside the C
+ABI in the same wheel.
 
-### Build: hatchling with a hook, cibuildwheel in CI
+### Build: nimlang's hatch hook, wheels cross-built on one Linux machine
 
-`uv build` uses a hatchling build hook that runs `nim c --app:lib` and marks the wheel as
-platform-specific (checked in the proof of concept). In CI, cibuildwheel (4.3.5) builds the
-platform wheels: Nim installed in `before-all` (choosenim or the nightlies, as
-`tools/setup.sh` does), auditwheel/delocate fix the tags. Since the wheel does not depend on the
-Python version, `CIBW_BUILD` can be one CPython per platform. Publishing with PyPI trusted
-publishing from a `v*` tag.
+`nimlang` (Pietro's PyPI package: the Nim compiler in a wheel, C through `zig cc` from
+`ziglang`) is a build requirement, and its hatch hook builds the library
+(`[tool.hatch.build.hooks.nimlang] extensions = ["src/mari/native.nim"]`, a module that includes
+the C ABI). Checked: `uv build` with `NIMLANG_TARGET` made the five platform wheels
+(manylinux_2_17 x86-64 and aarch64, macOS arm64 and x86-64, win_amd64, about 1.2 MB each) on one
+Linux machine, with no Nim or C compiler installed. The Linux x86-64 wheel ran on Python 3.10
+and 3.14. This replaces the custom hook and cibuildwheel: one Linux job builds, a matrix on
+Linux, macOS and Windows installs each wheel and runs the shared examples, and nothing goes to
+PyPI (trusted publishing, `v*` tag) until it is green. The sdist builds wherever nimlang has a
+wheel; elsewhere nimlang uses `nim` on the PATH. nimlang pins Nim (2.2.6), so a Nim bump is a
+nimlang bump.
+
+Two fixes came out of the check, both in `experiments/python/nim/`: compile-time paths are
+joined with `"/"` (cross-compiling for Windows, `/` gave `\` on a Linux path), and QuickJS
+calls take a lock and update the stack top, so drawing from Python threads works.
 
 ### Running Pele: QuickJS compiled in, Node as an option
 
@@ -70,7 +85,8 @@ state without a converter.
 - Node's text widths: Pele in Node or QuickJS measures with Arial's widths, the browser with the
   real fonts, so a theme font that is not installed looks different in the editor and in the
   export. Same as for nimib pages; the BACKLOG item "Text measurement in Node" is the fix.
-- Wheels on musl and Windows arm64 are not in the first set; the sdist covers them with Nim.
+- Wheels on musl and Windows arm64 are not in the first set (nimlang knows their tags; not
+  tried); the sdist covers them with Nim on the PATH.
 - A ctypes API can crash Python on a bug in the library. The ABI is three functions, with
   `try` around everything on the Nim side and strings freed by the library that allocated them.
 
