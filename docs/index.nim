@@ -26,18 +26,18 @@ nbCode:
     node "text", "Mermaid text"
     node "pele", "Pele", hexagon
     node "svg", "SVG", round
+    node "md", "GitHub draws it"
     "nim" --> "text"
     link "text", "pele", "in Node, at build time"
     "pele" --> "svg"
     link "text", "md", "in a README", dotted
-    node "md", "GitHub draws it"
 nbDiagram f, caption = "<b>Tavola 0.</b> How a diagram is made here."
 
 nbText: """
 <div class="cards">
-<div class="nota"><span class="titolo"><a href="explainer/">Explainer</a></span>Mermaid and Pele, how Pele draws, the art of diagrams from Priestley to Sugiyama, and diagrammari step by step.</div>
-<div class="nota rossa"><span class="titolo"><a href="specs/">Specs</a></span>How diagrammari behaves today, with examples that ran, and the diagrams they drew, when the page was built.</div>
-<div class="nota ocra"><span class="titolo"><a href="devlog/">Devlog</a></span>Living documents first, then dated posts on how diagrammari is made.</div>
+<div class="nota"><span class="titolo"><a href="explainer/">Explainer</a></span>From one arrow to every kind of diagram: Mermaid text, diagrammari's verbs, where each kind of diagram comes from, and at the end how it is all built.</div>
+<div class="nota"><span class="titolo"><a href="specs/">Specs</a></span>How diagrammari behaves today, with examples that ran, and the diagrams they drew, when the page was built.</div>
+<div class="nota"><span class="titolo"><a href="devlog/">Devlog</a></span>Living documents first, then dated posts on how diagrammari is made.</div>
 </div>
 
 Status: a first version, a proof of concept. The API will change.

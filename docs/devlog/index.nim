@@ -41,7 +41,7 @@ for d in living:
   docs.add &"""<div class="nota"><span class="titolo"><a href="{d.href}">{d.title}</a></span>{d.what}<br><small>updated {d.updated}</small></div>"""
 var items = ""
 for p in posts:
-  items.add &"""<div class="nota ocra"><small>{p.date}</small><span class="titolo"><a href="{p.slug}/">{p.title}</a></span>{p.lede}</div>"""
+  items.add &"""<div class="nota"><small>{p.date}</small><span class="titolo"><a href="{p.slug}/">{p.title}</a></span>{p.lede}</div>"""
 
 nbRawHtml: &"""<p class="kicker">Devlog</p>
 <h1>How diagrammari is made</h1>

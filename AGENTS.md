@@ -71,6 +71,19 @@ working rules that are easy to miss.
 - A link can show part of the specs page: `specs/?spec=<names>` or `specs/?change=<names>`
   (comma-separated, `name*` for a prefix, `all`, or the same after `#`).
 - Facts in the explainer's history come with a link to their source; check them before adding.
+- How a page is written (from Pietro's review of tabelline 0.1, "complicare è facile, semplificare
+  è difficile"):
+  - Order from the simplest and most fundamental to the most complex, starting from zero: the
+    explainer opens with one arrow written as text and ends with "How it is built".
+  - Put small examples side by side (`nbBeside`, with `nbCell` for a code block and its drawing).
+  - Write code in the order a reader meets it: define a node before linking it, a value before
+    using it.
+  - Be exact about the API: say what is a macro (only the four builder blocks), a proc or a
+    template.
+  - End a living document with "How it is built", explained from scratch, with the
+    implementation of every important piece.
+  - One marker for headings and the indice (the red dot); the triangle only marks warnings
+    (`nbNota(text, "avviso")`). No decoration that carries no meaning.
 
 ## Previews and PRs
 
