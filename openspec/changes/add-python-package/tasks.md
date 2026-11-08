@@ -5,13 +5,14 @@
 
 ## 2. Package
 
-- [ ] 2.1 `python/`: pyproject (hatchling, extras `node` and `widget`), build hook, `src/mari`
+- [ ] 2.1 `python/`: pyproject (hatchling with nimlang's hook, extras `node` and `widget`), `src/mari`
 - [ ] 2.2 `Diagram`, `draw`, `DiagramError`, `pele_version`; snake_case options
 - [ ] 2.3 Tests with pytest, and the Python examples of the specs run by a small runner
 
 ## 3. Wheels
 
-- [ ] 3.1 `.github/workflows/wheels.yml`: cibuildwheel with Nim in `before-all`, one CPython per platform
+- [ ] 3.1 `.github/workflows/wheels.yml`: five wheels built with `NIMLANG_TARGET` on one Linux job, each
+  installed and tested on its own OS
 - [ ] 3.2 Trusted publishing to TestPyPI on a branch, PyPI on a `v*` tag
 - [ ] 3.3 Check `uv add diagrammari` in a new project on Linux, macOS and Windows
 

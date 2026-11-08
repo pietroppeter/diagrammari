@@ -54,7 +54,7 @@ of it is in `experiments/python/`.
 
 - **The Python package** (M). *Proposed: `add-python-package`.* `uv add diagrammari`,
   `import mari`: the Nim library in a `py3-none-<platform>` wheel, loaded with ctypes; Node from
-  `diagrammari[node]`; wheels by cibuildwheel.
+  `diagrammari[node]`; wheels built by nimlang on one Linux machine.
 - **The editor in Jupyter, marimo and a browser tab** (M). *Proposed: `add-notebook-editor`.*
   One anywidget module; `mo.ui.anywidget` in marimo; `edit_in_browser()` from a script.
 - **Pele in QuickJS for the Nim library** (M). Compile QuickJS (quickjs-ng, MIT, C) into `mari`
